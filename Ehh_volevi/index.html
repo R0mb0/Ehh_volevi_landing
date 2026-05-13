@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ehh Volevi?</title>
+    <meta name="description" content="Ehh Volevi? — Meme Page" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+
+    <div id="fakeLoader" class="loader">
+      <div class="loader-card">
+        <div class="loader-title">Loading...</div>
+        <div class="loader-bar">
+          <div class="loader-fill" id="loaderFill"></div>
+        </div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+      </div>
+    </div>
+
+    <main class="page">
+      <section class="card">
+        <div class="badge" aria-hidden="true">😏</div>
+        <h1 id="title">Che ti aspettavi, genio?</h1>
+        <p id="subtitle">
+          Qui non c’è nulla da vedere. Torna indietro, campione.
+        </p>
+
+        <div class="meme">
+          <div class="meme-glow"></div>
+          <div class="meme-text" id="memeText">EHHH VOLEVI?</div>
+        </div>
+
+        <div class="actions">
+
+          <a id="goBackBtn" class="btn primary" href="#" role="button">
+            Go Back
+          </a>
+          <button id="tryAgainBtn" class="btn ghost" type="button">
+            Try again
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
