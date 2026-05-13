@@ -64,7 +64,10 @@ const shakeOnLoad = () => {
 
 if (sessionStorage.getItem("memeShake") === "1") {
   sessionStorage.removeItem("memeShake");
-  window.addEventListener("load", shakeOnLoad);
+  window.addEventListener("load", () => {
+    // aspetta che il fake loader sparisca
+    setTimeout(shakeOnLoad, 500);
+  });
 }
 
 // --- Go Back: first click arms “dodgy” mode, second click actually goes back
