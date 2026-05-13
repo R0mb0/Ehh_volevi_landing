@@ -1,0 +1,197 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f1115;
+  --bg2: #151923;
+  --text: #e6e9ef;
+  --muted: #9aa4b2;
+  --card: #1a1f2b;
+  --accent: #ff8a00;
+  --accent2: #ffce5d;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7fb;
+    --bg2: #eef1f6;
+    --text: #151923;
+    --muted: #4d5665;
+    --card: #ffffff;
+    --accent: #ff6a00;
+    --accent2: #ffb347;
+    --border: rgba(0,0,0,0.08);
+    --shadow: 0 20px 50px rgba(18, 38, 63, 0.15);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% 0%, var(--bg2), var(--bg));
+  color: var(--text);
+}
+
+.page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(720px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: var(--shadow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  font-size: 26px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin: 8px 0 6px 0;
+}
+
+p {
+  margin: 0 auto 18px auto;
+  color: var(--muted);
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.meme {
+  position: relative;
+  margin: 18px auto 24px auto;
+  padding: clamp(16px, 3vw, 26px);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,138,0,0.12), rgba(255,206,93,0.08));
+  border: 1px solid rgba(255,138,0,0.25);
+}
+
+.meme-glow {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle, rgba(255,138,0,0.35), transparent 60%);
+  filter: blur(22px);
+  z-index: 0;
+}
+
+.meme-text {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: clamp(22px, 5vw, 44px);
+  text-transform: uppercase;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #111;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.footer {
+  display: block;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.btn.dodgy {
+  position: fixed;
+  z-index: 9999;
+  transition: transform 0.12s ease, left 0.12s ease, top 0.12s ease;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(1200px 600px at 20% 0%, var(--bg2), var(--bg));
+  z-index: 99999;
+}
+
+.loader-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  min-width: 260px;
+}
+
+.loader-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.loader-bar {
+  height: 10px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.loader-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  transition: width 0.1s linear;
+}
+
+.loader-percent {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
