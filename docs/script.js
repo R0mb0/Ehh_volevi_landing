@@ -1,9 +1,20 @@
-// Fake loader
+// Fake loader + shake hook
 const loader = document.getElementById("fakeLoader");
 const loaderFill = document.getElementById("loaderFill");
 const loaderPercent = document.getElementById("loaderPercent");
 
 let p = 0;
+let pendingShake = sessionStorage.getItem("memeShake") === "1";
+
+const hideLoader = () => {
+  loader.style.display = "none";
+  if (pendingShake) {
+    pendingShake = false;
+    sessionStorage.removeItem("memeShake");
+    shakeOnLoad();
+  }
+};
+
 const timer = setInterval(() => {
   p += Math.floor(Math.random() * 12) + 4;
   if (p >= 100) p = 100;
@@ -12,7 +23,8 @@ const timer = setInterval(() => {
 
   if (p === 100) {
     clearInterval(timer);
-    setTimeout(() => (loader.style.display = "none"), 350);
+    // Piccola pausa prima di nascondere il loader
+    setTimeout(hideLoader, 300);
   }
 }, 120);
 
@@ -42,7 +54,7 @@ document.getElementById("memeText").textContent = t.memeText;
 document.getElementById("goBackBtn").textContent = t.goBack;
 document.getElementById("tryAgainBtn").textContent = t.tryAgain;
 
-// --- Try again: reload -> then animate on load
+// --- Try again: reload -> then animate after loader ends
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 tryAgainBtn.addEventListener("click", () => {
   sessionStorage.setItem("memeShake", "1");
