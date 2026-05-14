@@ -92,8 +92,8 @@ const moveButton = () => {
   const maxX = window.innerWidth - btnRect.width - padding;
   const maxY = window.innerHeight - btnRect.height - padding;
 
-  const x = Math.max(padding, Math.random() * maxX);
-  const y = Math.max(padding, Math.random() * maxY);
+  const x = Math.max(padding, Math.floor(Math.random() * maxX));
+  const y = Math.max(padding, Math.floor(Math.random() * maxY));
 
   goBackBtn.style.left = `${x}px`;
   goBackBtn.style.top = `${y}px`;
@@ -105,18 +105,34 @@ goBackBtn.addEventListener("click", (e) => {
   if (!dodgyArmed) {
     dodgyArmed = true;
     goBackBtn.classList.add("dodgy");
-    moveButton();
+
+    // unlock the button
+    const rect = goBackBtn.getBoundingClientRect();
+    goBackBtn.style.position = "fixed";
+    goBackBtn.style.left = `${rect.left}px`;
+    goBackBtn.style.top = `${rect.top}px`;
+    goBackBtn.style.zIndex = "9999";
+
+    setTimeout(moveButton, 50);
     return;
   }
 
-  // If user actually manages to click it again
   history.back();
 });
 
+// Desktop:
 goBackBtn.addEventListener("mouseenter", () => {
   if (dodgyArmed) moveButton();
 });
 
-goBackBtn.addEventListener("focus", () => {
-  if (dodgyArmed) moveButton();
-});
+// Mobile:
+goBackBtn.addEventListener(
+  "touchstart",
+  (e) => {
+    if (dodgyArmed) {
+      e.preventDefault();
+      moveButton();
+    }
+  },
+  { passive: false }
+);
